@@ -2,9 +2,9 @@ import fetchRequest from "./fetchRequest.js";
 import {modalForm, tableBody} from "./price.js";
 import {overlay} from "./attributes.js";
 import responseText from "./responseText.js";
-import {renderChanges} from "./addNewGood.js";
 import addImg from "./file.js";
 import addCategory from "./addCategory.js";
+import {init} from "../main.js";
 //PATCH /api/goods/{id}
 
 export const editGood = () => {
@@ -21,6 +21,7 @@ export const editGood = () => {
         const id = row.querySelector('.table__cell_name').dataset.id;
         await fetchRequest(`goods/${id}`, {method: 'GET'})
           .then(data => {
+
             overlay.classList.add('active');
             modalForm.name.value = data.title;
             modalForm.category.value = data.category;
@@ -50,8 +51,8 @@ export const editGood = () => {
               'Content-Type': 'application/json',
             }
           })
-            .then(res => {
-              renderChanges(res);
+            .then(() => {
+               init();
             })
             .catch(errors => {
               console.log(errors.message, ' path');

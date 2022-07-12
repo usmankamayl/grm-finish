@@ -1,23 +1,8 @@
-import {createRow} from "./create.js";
-import {removeRow} from "./renderGoods.js";
-import {modalForm, tableBody, getTotalPrice} from "./price.js";
-import {overlay} from "./attributes.js";
+import {modalForm} from "./price.js";
 import fetchRequest from "./fetchRequest.js";
 import responseText from "./responseText.js";
 import addImg from "./file.js";
-
-export const renderChanges = function (res) {
-    modalForm.total.value = `$ 0`;
-    tableBody.append(createRow(res));
-    modalForm.total.textContent = `$ 0`;
-    modalForm.reset();
-    if (document.querySelector('.image-container')) {
-      document.querySelector('.image-container').remove();
-    }
-    getTotalPrice();
-    removeRow();
-    overlay.classList.remove('active');
-}
+import {init} from "../main.js";
 
 const toBase64 = file => new Promise((resolve, reject) => {
   const reader = new FileReader();
@@ -53,7 +38,7 @@ export const addNewGood = function () {
       }
     })
       .then(res => {
-        renderChanges(res);
+       init();
       })
       .catch(error => {
         console.log(error.message);

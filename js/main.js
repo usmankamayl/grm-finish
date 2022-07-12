@@ -1,15 +1,16 @@
 import {removeClassActive, overlay, checkedInput, addClassActive, addAttribute} from "./modules/attributes.js";
 import {addNewGood} from "./modules/addNewGood.js";
-import {priceOnBlur, tableBody} from "./modules/price.js";
+import {priceOnBlur} from "./modules/price.js";
 import {removeRow} from "./modules/renderGoods.js";
 import {getTotalPrice} from "./modules/price.js";
 import {editGood} from "./modules/edit.js";
 import filterGoods from "./modules/search.js";
 import {renderGoods} from "./modules/renderGoods.js";
 
-const goods = await renderGoods();
 
-export const init =  () => {
+
+export const init =  async () => {
+  const goods = await renderGoods();
   addClassActive();
   addAttribute();
   removeClassActive(overlay);
