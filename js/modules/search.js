@@ -2,11 +2,14 @@
 
 import fetchRequest from "./fetchRequest.js";
 import responseText from "./responseText.js";
-import {tableBody} from "./price.js";
-import {createRow} from "./create.js";
+import {getTotalPrice, tableBody} from "./price.js";
+import {editGood} from "./edit.js";
+import {showGoods} from "./showGoods.js";
+import {removeRow} from "./removeRow.js";
+import {infoOfAction} from "./infoOfAction.js";
+//import {updatePage} from "./updatePage";
 
-
-const filterGoods = (cb) => {
+const filterGoods = () => {
   const panelInput = document.querySelector('.panel__input');
   const debounce = (fn, msec) => {
     let lastCall = 0;
@@ -36,17 +39,29 @@ const filterGoods = (cb) => {
       method: 'GET',
       callback: responseText,
     }).then(res => {
+       console.log(res, ' res')
+       if (res.length === 0) {
+         tableBody.innerHTML = '';
+         infoOfAction('По вашему запросу ничего не найдено', 'red');
+         //updatePage(res);
+         getTotalPrice();
+         showGoods([]);
+         editGood();
+         return;
+       }
        tableBody.innerHTML = '';
-         res.forEach(item => {
-           tableBody.append(createRow(item));
-         })
-       cb();
+       if (search === '') {
+         infoOfAction( `товаров загружено - ${res.length} `, 'green');
+       } else infoOfAction( `По вашему запросу товаров найдено - ${res.length} `, 'green');
+
+       //updatePage(res);
+       showGoods(res);
+       getTotalPrice();
+       editGood();
+       removeRow();
     })
+
   }
-
-
-
-
 
 
 

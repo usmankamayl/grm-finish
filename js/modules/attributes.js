@@ -1,27 +1,27 @@
-import {modalForm} from "./price.js";
-import addCategory from "./addCategory.js";
+import { modalForm} from "./price.js";
 export const overlay = document.querySelector('.overlay');
-const modalInput = document.querySelector('.modal__checkbox + .modal__input');
-const modalCheckbox = document.querySelector('.modal__checkbox');
 const btnAddGood = document.querySelector('.panel__add-goods');
 
 export const addClassActive = function () {
   btnAddGood.addEventListener('click', async () => {
+    overlay.classList.add('active');
+    modalForm.reset();
+    removeClassActive(overlay);
     if (document.querySelector('.image-container')) {
       document.querySelector('.image-container').remove();
     }
-    await addCategory();
-    modalForm.reset();
-    overlay.classList.add('active');
+    checkedInput(overlay);
+    addAttribute(overlay);
   });
 }
 
-export const addAttribute = function () {
+export const addAttribute = function (select) {
+  const modalForm = select.querySelector('.modal__form');
   modalForm.querySelectorAll('input').forEach(input => {
     if (input.name === 'count' || input.name === 'discount_count' || input.name === 'price' || input.name === 'count') {
       input.setAttribute('type','number');
     }
-    if (input.name !== 'image') {
+    if (input.name !== 'image' &&  input.name !== 'discount' && input.name !== 'discount_count') {
       input.setAttribute('required', 'true');
     }
 
@@ -47,7 +47,9 @@ export const removeClassActive = function (select) {
   });
 }
 
-export const checkedInput = function () {
+export const checkedInput = function (select) {
+  const modalInput = select.querySelector('.modal__checkbox + .modal__input');
+  const modalCheckbox = select.querySelector('.modal__checkbox');
   modalCheckbox.addEventListener('change', () => {
     if (modalCheckbox.checked) {
       modalInput.removeAttribute('disabled');

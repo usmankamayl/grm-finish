@@ -30,6 +30,7 @@ const fetchRequest = async (postfix, {
     throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
 
   } catch (err) {
+    console.log(err);
     return callback(err);
   }
 };

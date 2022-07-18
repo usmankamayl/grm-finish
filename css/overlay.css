@@ -1,4 +1,4 @@
-.overlay, .overlay-delete {
+.overlay, .overlay-delete, .overlay-update {
   display: none;
   position: fixed;
   justify-content: center;
@@ -11,7 +11,7 @@
   background: rgba(255, 255, 255, 0.8);
 }
 
-.overlay.active, .overlay-delete.active {
+.overlay.active, .overlay-delete.active, .overlay-update.active {
   display: flex;
 }
 

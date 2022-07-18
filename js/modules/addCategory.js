@@ -1,11 +1,11 @@
 import fetchRequest from "./fetchRequest.js";
 import responseText from "./responseText.js";
 
-const addCategory = async () => {
+const addCategory = async (select) => {
   const list = await fetchRequest('category', {method: 'GET',
     callback: responseText,
   })
-  const inputCategories = document.querySelector('#category');
+  const inputCategories = select.querySelector('#category');
   inputCategories.setAttribute('list', 'categories');
   const datalist = document.createElement('datalist');
   datalist.setAttribute('id', 'categories');

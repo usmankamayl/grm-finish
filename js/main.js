@@ -1,7 +1,7 @@
-import {removeClassActive, overlay, checkedInput, addClassActive, addAttribute} from "./modules/attributes.js";
+'use strict';
+
 import {addNewGood} from "./modules/addNewGood.js";
-import {priceOnBlur} from "./modules/price.js";
-import {removeRow} from "./modules/renderGoods.js";
+import {removeRow} from "./modules/removeRow.js";
 import {getTotalPrice} from "./modules/price.js";
 import {editGood} from "./modules/edit.js";
 import filterGoods from "./modules/search.js";
@@ -9,18 +9,14 @@ import {renderGoods} from "./modules/renderGoods.js";
 
 
 
+
 export const init =  async () => {
   const goods = await renderGoods();
-  addClassActive();
-  addAttribute();
-  removeClassActive(overlay);
-  checkedInput();
+  filterGoods();
   addNewGood();
-  priceOnBlur();
   removeRow();
   getTotalPrice();
   editGood();
-  filterGoods(init);
   const btnPic = document.querySelectorAll('.table__btn_pic');
 
   btnPic.forEach(el => {
@@ -31,9 +27,9 @@ export const init =  async () => {
 
 }
 
-init();
 
 
+await init();
 
 
 
