@@ -1,6 +1,6 @@
 //const URL = 'https://damp-ocean-68014.herokuapp.com/api/';
 //const URL = 'https://stark-sea-70867.herokuapp.com/api/';
-const URL = 'https://secret-retreat-14139.herokuapp.com/api/';
+const URL = 'https://github.com/usmankamayl/cms-backend';
 //const URL = 'http://localhost:3000/api/';
 const fetchRequest = async (postfix, {
   method = 'get',
