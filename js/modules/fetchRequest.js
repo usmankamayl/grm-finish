@@ -1,6 +1,6 @@
 //const URL = 'https://damp-ocean-68014.herokuapp.com/api/';
 //const URL = 'https://stark-sea-70867.herokuapp.com/api/';
-const URL = 'https://sable-childlike-chip.glitch.me/api';
+const URL = 'https://sable-childlike-chip.glitch.me/api/';
 //const URL = 'http://localhost:3000/api/';
 const fetchRequest = async (postfix, {
   method = 'get',
